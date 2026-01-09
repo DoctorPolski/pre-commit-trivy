@@ -2,31 +2,34 @@
 
 Add this to your [pre-commit](https://pre-commit.com/) `.pre-commit-config.yaml` config.
 
-You can use [trivy fs flags](https://trivy.dev/v0.67/docs/target/filesystem/) to configure Trivy filesytem scans.
+You can use [trivy fs flags](https://trivy.dev/docs/v0.68/guide/target/filesystem/) to configure Trivy filesytem scans.
 Insert the required flags in the `args` field.
 
-You can also use the trivyconfig-docker` to scan for misconfigurations [trivy config](https://trivy.dev/v0.67/docs/scanner/misconfiguration/)
+You can also use the `trivyconfig-docker` to scan for misconfigurations [trivy config](https://trivy.dev/docs/v0.68/guide/scanner/misconfiguration/)
 
 ## trivyfs-docker
-pre-commit will use the `aquasec/trivy:0.67.0` docker image and run it inside a docker container.
+
+pre-commit will use the `aquasec/trivy:0.68.2` docker image and run it inside a docker container.
 
 ```yaml
 repos:
--   repo: https://github.com/mxab/pre-commit-trivy.git
-    rev: v0.16.0
+  - repo: https://github.com/mxab/pre-commit-trivy.git
+    rev: v0.17.0
     hooks:
-    -   id: trivyfs-docker
+      - id: trivyfs-docker
         args:
           - --skip-dirs
           - ./tests
           - . # last arg indicates the path/file to scan
-    -   id: trivyconfig-docker
+      - id: trivyconfig-docker
         args:
           - --skip-dirs
           - ./tests
           - . # last arg indicates the path/file to scan
 ```
+
 ### Cache
+
 The hook will create a cache directory `.pre-commit-trivy-cache` in your repo. Add it to the `.gitignore`.
 
 ```
