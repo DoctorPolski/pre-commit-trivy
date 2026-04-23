@@ -9,12 +9,12 @@ You can also use the `trivyconfig-docker` to scan for misconfigurations [trivy c
 
 ## trivyfs-docker
 
-pre-commit will use the `aquasec/trivy:0.68.2` docker image and run it inside a docker container.
+pre-commit will use the `aquasec/trivy:0.70.0` docker image and run it inside a docker container.
 
 ```yaml
 repos:
   - repo: https://github.com/mxab/pre-commit-trivy.git
-    rev: v0.17.0
+    rev: v0.18.0
     hooks:
       - id: trivyfs-docker
         args:
